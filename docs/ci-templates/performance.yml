@@ -1,0 +1,37 @@
+name: Local-container JMeter smoke
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: mvn -B -f eBus_backend/pom.xml -DskipTests package
+      - run: |
+          docker compose -f qa/compose.yaml up -d
+          python qa/wait_api.py
+          docker compose -f qa/compose.yaml exec -T postgres psql -U ebus_qa -d ebus_qa -f /qa/seed.sql
+          docker build -f jmeter/Dockerfile -t ebus-qa-jmeter:local .
+      - name: One synthetic user, one iteration, seven samples
+        run: |
+          mkdir -p reports/jmeter/ci
+          docker run --rm --add-host host.docker.internal:host-gateway -v "$PWD:/workspace" ebus-qa-jmeter:local -n -t /workspace/jmeter/smoke.jmx -l /workspace/reports/jmeter/ci/samples.jtl -j /workspace/reports/jmeter/ci/jmeter.log -e -o /workspace/reports/jmeter/ci/dashboard -Jjmeter.save.saveservice.output_format=csv -Jjmeter.save.saveservice.response_data=false -Jjmeter.save.saveservice.samplerData=false -Jjmeter.save.saveservice.requestHeaders=false -Jjmeter.save.saveservice.responseHeaders=false
+          python qa/check_jmeter.py reports/jmeter/ci/samples.jtl
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: jmeter-smoke
+          path: reports/jmeter
+      - if: always()
+        run: docker compose -f qa/compose.yaml stop

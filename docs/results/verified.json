@@ -1,0 +1,78 @@
+{
+  "generatedAt": "2026-10-26T19:08:03.007212+00:00",
+  "java": {
+    "sourceRoot": "C:\\Users\\fatouma\\Downloads\\eBus_back\\eBus_back",
+    "totals": {
+      "tests": 46,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "passed": 46,
+    "measuredClassCoverage": {
+      "AbonnementServiceImp": {
+        "coveredLines": 62,
+        "missedLines": 1,
+        "lineCoveragePercent": 98.41
+      },
+      "ObjetPerduServiceImp": {
+        "coveredLines": 29,
+        "missedLines": 20,
+        "lineCoveragePercent": 59.18
+      }
+    },
+    "coverageScope": "Combined selected unit/integration executions; not a global critical-service coverage claim."
+  },
+  "robot": {
+    "passed": 12,
+    "failed": 8,
+    "skipped": 0,
+    "generator": "Robot 7.3.2 (Python 3.13.16 on win32)"
+  },
+  "playwright": {
+    "kind": "real-browser-local-e2e",
+    "exitStatus": 0,
+    "counts": {
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0,
+      "error": 0
+    }
+  },
+  "jmeter": {
+    "timestamp": "2026-10-26T18:48:58.8952824Z",
+    "sampleCount": 7,
+    "failedSamples": 0,
+    "errorRatePercent": 0,
+    "meanMs": 311.71,
+    "p90Ms": 604,
+    "p95Ms": 604,
+    "p99Ms": 604,
+    "measuredDurationSeconds": 5.42,
+    "throughputPerSecond": 1.292,
+    "percentileMethod": "Nearest rank across measured HTTP samples",
+    "limitation": "One-user smoke only, seven heterogeneous samples; not a load baseline or capacity estimate."
+  },
+  "historicalNewman": {
+    "PASS": 25,
+    "FAIL": 16,
+    "SKIPPED": 10,
+    "BLOCKED": 0
+  },
+  "preservedQaFixtures": {
+    "users": 5,
+    "lines": 1,
+    "protectedUserFingerprint": "a83efc52a9b2d67a6ed600adc5e17d9fadb6be7e742ba7d4cd7a80dca9cf1875",
+    "protectedLineFingerprint": "3eab6b7d958a3e6526e5ae345a8ea09e81fb305e137981e695eeabce05c8a365",
+    "originalFixtureIdentitiesMatch": true,
+    "timestamp": "2026-10-26T19:08:02.607101+00:00",
+    "evidence": "Read-only counts and fingerprints of original fixture IDs/email identities and line ID/number; no mutation or automatic repair."
+  },
+  "githubActions": "Workflow definitions prepared; not executed on GitHub.",
+  "limits": [
+    "Twenty browser scenarios include UI/navigation and four authenticated E2E journeys, not twenty full transactional workflows.",
+    "No successful Stripe payment, heavy load or endurance result claimed.",
+    "Allure result files generated; Allure HTML rendering not executed.",
+    "Deployed UI inspection timed out; local acceptance does not establish a deployed UI PASS."
+  ]
+}

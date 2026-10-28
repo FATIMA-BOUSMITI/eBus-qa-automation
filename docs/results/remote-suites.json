@@ -1,0 +1,34 @@
+{
+  "target": "https://ebus-backend-ao2u.onrender.com",
+  "execution": "real-remote-instance",
+  "credentials": "existing USER; loaded privately from ignored local file",
+  "robot": {
+    "suite": "robot-framework/remote/remote.robot",
+    "passed": 11,
+    "failed": 1,
+    "skipped": 0,
+    "failure": {"id": "REM-005", "path": "/types-abonnement", "authenticated": false, "actual_http": 500, "expected_http": 200},
+    "authenticated_types_check": "PASS",
+    "report": "reports/robot/remote-20261027-202031/report.html"
+  },
+  "jmeter": {
+    "threads": 1,
+    "iterations": 1,
+    "samples": 7,
+    "failed_samples": 0,
+    "mean_ms": 638.57,
+    "min_ms": 238,
+    "max_ms": 1616,
+    "measured_duration_seconds": 13.44,
+    "throughput_per_second": 0.521,
+    "pacing_ms": 1000,
+    "preparation_requests_included": false,
+    "limitation": "Bounded warm one-user smoke; no capacity or load conclusion",
+    "report": "reports/jmeter/remote-20261027-202031/dashboard/index.html"
+  },
+  "methods": ["GET", "POST /users/login"],
+  "deletions": false,
+  "payments": false,
+  "artifact_scan": "No supplied emails/passwords or JWTs detected in main Robot/JMeter artifacts",
+  "overall_status": "FAIL because of Robot REM-005; JMeter succeeded independently"
+}

@@ -1,0 +1,21 @@
+{
+  "kind": "real-backend-line-lifecycle",
+  "status": "PASS",
+  "backend": "https://ebus-backend-ao2u.onrender.com",
+  "frontend": "http://127.0.0.1:17357",
+  "credentials": "existing ADMIN account; alias only in ignored runtime report",
+  "ui_create": true,
+  "backend_fields_verified": true,
+  "ui_presence_verified": true,
+  "ui_delete": true,
+  "ui_absence_verified": true,
+  "backend_absence_verified": true,
+  "initial_line_count": 19,
+  "final_line_count": 19,
+  "existing_lines_unchanged": true,
+  "created_test_line_id": 27,
+  "test_line_absent_after_cleanup": true,
+  "single_complete_run": true,
+  "report": "reports/playwright/line-lifecycle/20261027-182352/summary.json",
+  "scope": "one line lifecycle; other administrative mutations are not covered"
+}

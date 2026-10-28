@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-26",
+  "appium_server": "3.8.0",
+  "uiautomator2_driver": "8.7.1",
+  "appium_python_client": "5.3.1",
+  "robot_framework": "7.3.2",
+  "scenario_definitions": 20,
+  "robot_dry_run": {"definitions_validated": 20, "definition_errors": 0},
+  "functional_android_tests_executed": 0,
+  "functional_pass_count": null,
+  "doctor_required_fixes": 0,
+  "doctor_optional_fixes": 3,
+  "connected_android_devices": 1,
+  "device_connection": "Wi-Fi ADB, Android 12, state=device",
+  "ebus_already_installed": true,
+  "app_launch": "Not executed: tool authorization rejected by user",
+  "emulator_acceleration": "WHPX usable",
+  "qa_apk_built": false,
+  "remaining": ["Restore compatible Flutter SDK", "Build local QA APK", "Execute functional suite and validate native selectors"],
+  "data_mutations_executed": false
+}

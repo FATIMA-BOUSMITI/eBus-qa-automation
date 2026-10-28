@@ -1,0 +1,33 @@
+{
+  "package": "com.example.smart_bus.render",
+  "label": "eBus Render",
+  "backend": "https://ebus-backend-ao2u.onrender.com",
+  "apk_sha256": "2fded8353b43a9c3f53b8a2a78555dbfee3973c2afa562a2488ee0edcccea28f",
+  "built_utc": "2026-10-27T10:39:15.7767941Z",
+  "installed_and_launched": true,
+  "original_ebus_package_path_preserved": true,
+  "phone_android": "12",
+  "phone_backend_health_request_observed": true,
+  "data_display": "User confirmed data loads; MOB-017 also passed by matching a rendered line against the public remote API",
+  "functional_test_bodies_executed": 20,
+  "consolidated": {"passed": 19, "failed": 1, "skipped": 0, "report": "reports/appium/consolidated/report.html"},
+  "execution_history": [
+    {"report": "reports/appium/20261027-110004/output.xml", "passed": 18, "failed": 2},
+    {"report": "reports/appium/20261027-111740/output.xml", "passed": 1, "failed": 1, "scope": "rerun failures; MOB-011 passed, MOB-007 application launch setup failed"},
+    {"report": "reports/appium/20261027-112240/output.xml", "passed": 0, "failed": 1, "scope": "MOB-007; notification shade covered application before name fields could be verified"}
+  ],
+  "appium_attempts": [
+    {
+      "case": "MOB-001",
+      "result": "FAIL",
+      "phase": "SETUP",
+      "cause": "Android PackageInstaller: Requested internal only, but not enough space",
+      "component": "appium-uiautomator2-server-v10.7.1.apk",
+      "report": "reports/appium/20261027-105101/report.html"
+    }
+  ],
+  "initial_phone_free_storage_mb": 516,
+  "storage_recovered": "User freed phone storage; 1.2 GiB observed and UiAutomator2 installation succeeded",
+  "required_next_action": "User restores eBus Render foreground without notification shade, leaves phone under Appium control, confirms ready; then rerun MOB-007",
+  "users_or_lines_deleted_by_agent": false
+}

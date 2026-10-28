@@ -1,0 +1,90 @@
+{
+  "run_id": 40617205396,
+  "url": "https://github.com/ikraammel/eBus_backend/actions/runs/40617205396",
+  "commit": "78380b599586f05f18c5967b8f5c196cd08f5b91",
+  "conclusion": "success",
+  "playwright": {
+    "browser_channel": "chrome",
+    "browser_version": "155.0.8059.39",
+    "checks": [
+      {
+        "name": "GUEST journey",
+        "pass": true,
+        "diagnostics": {
+          "failed_resources": {},
+          "javascript_error_types": [],
+          "api_statuses": {
+            "health": 200,
+            "lines": 200
+          },
+          "api_requests": {
+            "health": 1,
+            "lines": 1
+          },
+          "route_errors": 0
+        }
+      },
+      {
+        "name": "USER journey",
+        "pass": true,
+        "diagnostics": {
+          "failed_resources": {},
+          "javascript_error_types": [],
+          "api_statuses": {
+            "health": 200,
+            "login": 200,
+            "other": 200,
+            "lines": 200
+          },
+          "api_requests": {
+            "health": 1,
+            "login": 1,
+            "other": 3,
+            "lines": 1
+          },
+          "route_errors": 0,
+          "login_payload_checks": {
+            "json_object": true,
+            "email_matches_secret": true,
+            "password_matches_secret": true
+          }
+        }
+      },
+      {
+        "name": "ADMIN journey",
+        "pass": true,
+        "diagnostics": {
+          "failed_resources": {},
+          "javascript_error_types": [],
+          "api_statuses": {
+            "health": 200,
+            "login": 200
+          },
+          "api_requests": {
+            "health": 1,
+            "login": 1
+          },
+          "route_errors": 0,
+          "login_payload_checks": {
+            "json_object": true,
+            "email_matches_secret": true,
+            "password_matches_secret": true
+          }
+        }
+      }
+    ]
+  },
+  "jmeter": {
+    "kind": "bounded smoke, not a capacity benchmark",
+    "expected_samples": 7,
+    "samples": 7,
+    "failed": 0,
+    "mean_ms": 757.29
+  },
+  "robot": {
+    "tests": 12,
+    "pass": 12,
+    "fail": 0,
+    "skip": 0
+  }
+}

@@ -1,0 +1,157 @@
+﻿{
+    "kind":  "real-browser-business-e2e-after-targeted-reruns",
+    "backend":  "https://ebus-backend-ao2u.onrender.com",
+    "frontend":  "http://127.0.0.1:17357",
+    "status":  "PASS",
+    "passed":  7,
+    "failed":  0,
+    "single_complete_run":  false,
+    "payment_tested":  false,
+    "existing_records_unchanged":  true,
+    "temporary_records_removed":  true,
+    "cases":  [
+                  {
+                      "id":  "BIZ-001",
+                      "title":  "Objet perdu: USER declaration, ADMIN disponible/recupere, USER follows state",
+                      "marker":  "QA-E2E-55921D86E3D8",
+                      "status":  "PASS",
+                      "steps":  [
+                                    "Object created via UI and verified in real backend as EN_ATTENTE",
+                                    "USER declaration persisted and displayed as En attente",
+                                    "ADMIN made object Disponible; USER sees the new persisted status",
+                                    "ADMIN marked recovered; USER sees Cloture (RECUPERE) after reload"
+                                ],
+                      "business_write_attempts":  3,
+                      "created":  {
+                                      "object":  41
+                                  },
+                      "temporary_records_removed":  true,
+                      "existing_records_unchanged":  true,
+                      "source_report":  "reports/playwright/business-e2e/20261027-190647/summary.json"
+                  },
+                  {
+                      "id":  "BIZ-002",
+                      "title":  "Objet trouve: USER declaration, ADMIN validates, USER follows state",
+                      "marker":  "QA-E2E-A1BA901292A5",
+                      "status":  "PASS",
+                      "steps":  [
+                                    "Object created via UI and verified in real backend as EN_ATTENTE",
+                                    "USER declaration persisted and displayed as En attente",
+                                    "ADMIN made object Disponible; USER sees the new persisted status"
+                                ],
+                      "business_write_attempts":  2,
+                      "created":  {
+                                      "object":  42
+                                  },
+                      "temporary_records_removed":  true,
+                      "existing_records_unchanged":  true,
+                      "source_report":  "reports/playwright/business-e2e/20261027-190647/summary.json"
+                  },
+                  {
+                      "id":  "BIZ-003",
+                      "title":  "Reclamation: USER submits, ADMIN treats, USER sees updated status",
+                      "marker":  "QA-E2E-A302BFD0EF01",
+                      "status":  "PASS",
+                      "steps":  [
+                                    "USER claim persisted and displayed in the catalogue",
+                                    "ADMIN set Traitée; USER sees Traitée on their own test claim"
+                                ],
+                      "business_write_attempts":  2,
+                      "created":  {
+                                      "claim":  9
+                                  },
+                      "temporary_records_removed":  true,
+                      "existing_records_unchanged":  true,
+                      "source_report":  "reports/playwright/business-e2e/20261027-191316/summary.json"
+                  },
+                  {
+                      "id":  "BIZ-004",
+                      "title":  "Offre abonnement: create inactive, edit, cancel deletion, delete",
+                      "marker":  "QA-E2E-3EFE8737AA4A",
+                      "status":  "PASS",
+                      "steps":  [
+                                    "Inactive subscription offer created through UI and persisted with expected price/duration",
+                                    "New offer price and duration updated and verified in real backend",
+                                    "Cancel deletion preserves the new offer",
+                                    "New offer deleted through UI and absent from UI/backend; no payment created"
+                                ],
+                      "business_write_attempts":  3,
+                      "created":  {
+                                      "offer":  7
+                                  },
+                      "transport_errors":  1,
+                      "temporary_records_removed":  true,
+                      "existing_records_unchanged":  true,
+                      "source_report":  "reports/playwright/business-e2e/20261027-201311/summary.json"
+                  },
+                  {
+                      "id":  "BIZ-005",
+                      "title":  "Object mandatory fields: no backend write",
+                      "marker":  "QA-E2E-38A7FABB1900",
+                      "status":  "PASS",
+                      "steps":  [
+                                    "Required object fields rejected before any write"
+                                ],
+                      "business_write_attempts":  0,
+                      "temporary_records_removed":  true,
+                      "existing_records_unchanged":  true,
+                      "source_report":  "reports/playwright/business-e2e/20261027-190647/summary.json"
+                  },
+                  {
+                      "id":  "BIZ-006",
+                      "title":  "Claim without line: no backend write",
+                      "marker":  "QA-E2E-4649C8122A6D",
+                      "status":  "PASS",
+                      "steps":  [
+                                    "Claim without a line rejected before any backend write"
+                                ],
+                      "business_write_attempts":  0,
+                      "temporary_records_removed":  true,
+                      "existing_records_unchanged":  true,
+                      "source_report":  "reports/playwright/business-e2e/20261027-190647/summary.json"
+                  },
+                  {
+                      "id":  "BIZ-007",
+                      "title":  "Guest payment requires login and cancellation returns home",
+                      "marker":  "QA-E2E-68B2844A51C1",
+                      "status":  "PASS",
+                      "steps":  [
+                                    "Guest payment access requires login; cancel restores home without any write"
+                                ],
+                      "business_write_attempts":  0,
+                      "temporary_records_removed":  true,
+                      "existing_records_unchanged":  true,
+                      "source_report":  "reports/playwright/business-e2e/20261027-190647/summary.json"
+                  }
+              ],
+    "history":  [
+                    {
+                        "report":  "reports/playwright/business-e2e/20261027-190647/summary.json",
+                        "status":  "FAIL",
+                        "passed":  5,
+                        "failed":  2,
+                        "prerequisite_error_type":  null
+                    },
+                    {
+                        "report":  "reports/playwright/business-e2e/20261027-191316/summary.json",
+                        "status":  "FAIL",
+                        "passed":  1,
+                        "failed":  1,
+                        "prerequisite_error_type":  null
+                    },
+                    {
+                        "report":  "reports/playwright/business-e2e/20261027-201012/summary.json",
+                        "status":  "FAIL",
+                        "passed":  0,
+                        "failed":  0,
+                        "prerequisite_error_type":  "TimeoutError"
+                    },
+                    {
+                        "report":  "reports/playwright/business-e2e/20261027-201311/summary.json",
+                        "status":  "PASS",
+                        "passed":  1,
+                        "failed":  0,
+                        "prerequisite_error_type":  null
+                    }
+                ]
+}

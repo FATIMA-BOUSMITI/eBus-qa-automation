@@ -1,0 +1,21 @@
+{
+  "status": "installed-and-verified",
+  "flutter_version": "3.47.8",
+  "dart_version": "3.13.7",
+  "sdk_path": "C:\\Users\\fatouma\\Downloads\\flutter_windows_3.47.8-stable\\flutter",
+  "official_archive_sha256_verified": true,
+  "user_path_configured": true,
+  "flutter_version_command": "successful",
+  "flutter_doctor_flutter_check": "passed",
+  "android_sdk": "36.0.0",
+  "android_licenses": "Some licenses not accepted; user review required when needed",
+  "visual_studio": "Absent; not needed for Android tests",
+  "render_apk_status": "compiled successfully after approved removal of downloaded SDK ZIP archives to free disk space",
+  "render_apk_package": "com.example.smart_bus.render",
+  "render_apk_backend": "https://ebus-backend-ao2u.onrender.com",
+  "render_apk_sha256": "2fded8353b43a9c3f53b8a2a78555dbfee3973c2afa562a2488ee0edcccea28f",
+  "render_apk_installation": "installed and launched successfully on the Redmi; original eBus package preserved",
+  "render_runtime_health_url_observed": "https://ebus-backend-ao2u.onrender.com/api/health",
+  "appium_status": "Storage issue resolved. Consolidated result: 19 passed, 1 remaining failure (MOB-007 interrupted by notification shade); user readiness requested before retry",
+  "mobile_functional_tests_executed": 20
+}

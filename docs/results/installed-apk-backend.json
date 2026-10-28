@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-26",
+  "package": "com.example.smart_bus",
+  "apk_sha256": "6680510015bc80626da6e664858da3aed0c5eac9eb3eca3231300cb4026693cc",
+  "inspection": "Read-only copy of the APK installed on the Android 12 Redmi",
+  "evidence_artifact": "assets/flutter_assets/kernel_blob.bin",
+  "embedded_source_active_baseurl": "http://192.168.8.102:8080",
+  "dio_references_appconstants_baseurl": true,
+  "render_url_in_source": "Present as a commented alternative, not the active baseUrl declaration",
+  "conclusion": "Installed APK is configured for the old LAN backend, not Render",
+  "runtime_request_observed": false,
+  "app_data_modified": false
+}

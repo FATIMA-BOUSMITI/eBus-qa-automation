@@ -1,0 +1,81 @@
+name: Playwright - deployed frontend
+
+on:
+  workflow_dispatch:
+    inputs:
+      suite:
+        description: 'readonly: forms/guest checks; business: creates temporary records and cleans them'
+        required: true
+        default: readonly
+        type: choice
+        options:
+          - readonly
+          - business
+
+permissions:
+  contents: read
+
+# Avoid overlapping mutations on the shared deployed database.
+concurrency:
+  group: ebus-render-playwright
+  cancel-in-progress: false
+
+jobs:
+  deployed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      EBUS_DEPLOYED_FRONTEND_URL: https://ebus-frontend-1an4.onrender.com
+      EBUS_BROWSER_CHANNEL: chromium
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: playwright/requirements.txt
+      - name: Validate required GitHub Secrets
+        env:
+          EBUS_USER_EMAIL: ${{ secrets.EBUS_USER_EMAIL }}
+          EBUS_USER_PASSWORD: ${{ secrets.EBUS_USER_PASSWORD }}
+          EBUS_ADMIN_EMAIL: ${{ secrets.EBUS_ADMIN_EMAIL }}
+          EBUS_ADMIN_PASSWORD: ${{ secrets.EBUS_ADMIN_PASSWORD }}
+        run: python playwright/deployed_config.py
+      - name: Install Playwright and Chromium
+        run: |
+          python -m pip install -r playwright/requirements.txt
+          python -m playwright install --with-deps chromium
+      - name: Run against the actual deployed frontend and backend
+        env:
+          EBUS_USER_EMAIL: ${{ secrets.EBUS_USER_EMAIL }}
+          EBUS_USER_PASSWORD: ${{ secrets.EBUS_USER_PASSWORD }}
+          EBUS_ADMIN_EMAIL: ${{ secrets.EBUS_ADMIN_EMAIL }}
+          EBUS_ADMIN_PASSWORD: ${{ secrets.EBUS_ADMIN_PASSWORD }}
+          SELECTED_SUITE: ${{ inputs.suite }}
+        shell: bash
+        run: |
+          case "$SELECTED_SUITE" in
+            readonly)
+              python playwright/business_e2e.py --headless --case BIZ-005 --case BIZ-006 --case BIZ-007
+              ;;
+            business)
+              python playwright/business_e2e.py --headless
+              ;;
+            *)
+              echo 'Unsupported suite'
+              exit 2
+              ;;
+          esac
+      - name: Upload sanitized reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployed-playwright-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            reports/playwright/business-e2e/**/report.html
+            reports/playwright/business-e2e/**/summary.json
+          if-no-files-found: warn
+          retention-days: 7

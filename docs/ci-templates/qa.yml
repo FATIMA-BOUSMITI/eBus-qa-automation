@@ -1,0 +1,116 @@
+name: QA regression
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      frontend_build_url:
+        description: Optional HTTPS ZIP URL containing a Flutter Web build with index.html at archive root
+        required: false
+        type: string
+permissions:
+  contents: read
+jobs:
+  java:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      integration-db:
+        image: postgres:15
+        env:
+          POSTGRES_DB: ebus_integration
+          POSTGRES_USER: ebus_integration
+          POSTGRES_PASSWORD: integration-only
+        ports: ['55433:5432']
+        options: --health-cmd "pg_isready -U ebus_integration -d ebus_integration" --health-interval 3s --health-timeout 3s --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - name: Unit, PostgreSQL integration, JaCoCo, build
+        run: mvn -B -f eBus_backend/pom.xml verify
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: java-reports
+          path: |
+            eBus_backend/target/surefire-reports
+            eBus_backend/target/site/jacoco
+      - uses: actions/upload-artifact@v4
+        with:
+          name: backend-jar
+          path: eBus_backend/target/gestion-bus-0.0.1-SNAPSHOT.jar
+  api-and-browser:
+    needs: java
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      EBUS_API_URL: http://127.0.0.1:18080
+      EBUS_UI_URL: http://127.0.0.1:17357
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: backend-jar
+          path: eBus_backend/target
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: qa/requirements-automation.txt
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: pip install -r qa/requirements-automation.txt
+      - name: Start isolated API and wait for readiness
+        run: |
+          docker compose -f qa/compose.yaml up -d
+          python qa/wait_api.py
+          docker compose -f qa/compose.yaml exec -T postgres psql -U ebus_qa -d ebus_qa -f /qa/seed.sql
+      - name: Postman static validation
+        run: npm run postman:validate
+      - name: Newman regression (retains known application failures)
+        id: newman
+        continue-on-error: true
+        run: node qa/run-api.cjs
+      - name: Restore mutable fixture states
+        if: always()
+        run: docker compose -f qa/compose.yaml exec -T postgres psql -U ebus_qa -d ebus_qa -f /qa/restore.sql
+      - name: Robot API regression
+        id: robot
+        continue-on-error: true
+        run: python -m robot --loglevel NONE --outputdir reports/robot robot-framework/tests
+      - name: Prepare optional real Flutter build
+        if: github.event_name == 'workflow_dispatch' && inputs.frontend_build_url != ''
+        env:
+          FRONTEND_BUILD_URL: ${{ inputs.frontend_build_url }}
+        run: |
+          python qa/fetch_frontend.py
+          python -m playwright install --with-deps chromium
+          python -m http.server 17357 --bind 127.0.0.1 --directory .tools/frontend > /tmp/ebus-ui.log 2>&1 &
+      - name: Optional Playwright journeys against real local API
+        if: github.event_name == 'workflow_dispatch' && inputs.frontend_build_url != ''
+        id: browser
+        continue-on-error: true
+        working-directory: playwright
+        run: python -m pytest
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: automation-reports
+          path: |
+            reports/postman
+            reports/robot
+            reports/playwright
+          retention-days: 7
+      - name: Preserve failing regression status
+        if: always() && (steps.newman.outcome == 'failure' || steps.robot.outcome == 'failure' || steps.browser.outcome == 'failure')
+        run: exit 1
+      - name: Stop disposable environment
+        if: always()
+        run: docker compose -f qa/compose.yaml stop

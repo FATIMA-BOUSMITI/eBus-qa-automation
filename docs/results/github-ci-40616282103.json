@@ -1,0 +1,110 @@
+{
+  "run_id": 40616282103,
+  "url": "https://github.com/ikraammel/eBus_backend/actions/runs/40616282103",
+  "commit": "d0d59af26a2c03836bb08d7311154f771b4c71cd",
+  "conclusion": "failure",
+  "playwright": {
+    "browser_channel": "chrome",
+    "browser_version": "155.0.8059.39",
+    "checks": [
+      {
+        "name": "GUEST journey",
+        "pass": true,
+        "diagnostics": {
+          "failed_resources": {},
+          "javascript_error_types": [],
+          "api_statuses": {
+            "health": 200,
+            "lines": 200
+          },
+          "api_requests": {
+            "health": 1,
+            "lines": 1
+          },
+          "route_errors": 0
+        }
+      },
+      {
+        "name": "USER journey",
+        "pass": false,
+        "error_type": "AssertionError",
+        "failed_stage": "submit-login",
+        "diagnostics": {
+          "failed_resources": {},
+          "javascript_error_types": [],
+          "api_statuses": {
+            "health": 200,
+            "login": 500
+          },
+          "api_requests": {
+            "health": 1,
+            "login": 1
+          },
+          "route_errors": 0,
+          "flutter_dom": {
+            "ready": "complete",
+            "flutterViews": 2,
+            "placeholders": 0,
+            "semantics": 6,
+            "canvas": 0
+          },
+          "known_labels": {
+            "Bienvenue sur eBus": 0,
+            "Acc\u00e8s rapide": 0,
+            "Lignes de bus": 0,
+            "Gestion rapide": 0,
+            "Connexion requise": 0
+          },
+          "lines_heading_nodes": []
+        }
+      },
+      {
+        "name": "ADMIN journey",
+        "pass": false,
+        "error_type": "AssertionError",
+        "failed_stage": "submit-login",
+        "diagnostics": {
+          "failed_resources": {},
+          "javascript_error_types": [],
+          "api_statuses": {
+            "health": 200,
+            "login": 500
+          },
+          "api_requests": {
+            "health": 1,
+            "login": 1
+          },
+          "route_errors": 0,
+          "flutter_dom": {
+            "ready": "complete",
+            "flutterViews": 2,
+            "placeholders": 0,
+            "semantics": 24,
+            "canvas": 0
+          },
+          "known_labels": {
+            "Bienvenue sur eBus": 0,
+            "Acc\u00e8s rapide": 0,
+            "Lignes de bus": 0,
+            "Gestion rapide": 0,
+            "Connexion requise": 0
+          },
+          "lines_heading_nodes": []
+        }
+      }
+    ]
+  },
+  "jmeter": {
+    "kind": "bounded smoke, not a capacity benchmark",
+    "expected_samples": 7,
+    "samples": 7,
+    "failed": 0,
+    "mean_ms": 516.57
+  },
+  "robot": {
+    "tests": 12,
+    "pass": 12,
+    "fail": 0,
+    "skip": 0
+  }
+}

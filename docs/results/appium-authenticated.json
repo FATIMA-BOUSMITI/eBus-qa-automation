@@ -1,0 +1,16 @@
+{
+  "execution": "real-device",
+  "device": "Redmi 220733SFG",
+  "package": "com.example.smart_bus.render",
+  "backend": "https://ebus-backend-ao2u.onrender.com",
+  "suite": "appium/tests/authenticated.robot",
+  "passed": 3,
+  "failed": 0,
+  "skipped": 0,
+  "single_run": true,
+  "asserted_journey": ["existing account login", "profile email matches selected account", "logout returns to login"],
+  "robot_output": "reports/appium/20261027-113942/output.xml",
+  "report": "reports/appium/20261027-113942/report.html",
+  "business_data_mutations": false,
+  "screenshots_and_ui_dumps": "disabled for authenticated suite"
+}
