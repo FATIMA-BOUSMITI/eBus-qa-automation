@@ -82,7 +82,7 @@ Ne placez jamais dans ce dépôt : clé Stripe, secret JWT, URL PostgreSQL, mot 
 
 ## Lancer les suites
 
-### Robot Framework — API
+### Robot Framework - API
 
 ```powershell
 robot --outputdir reports\robot robot-framework\tests
@@ -90,7 +90,7 @@ robot --outputdir reports\robot robot-framework\tests
 
 Consulter [robot-framework/README.md](robot-framework/README.md) avant une exécution sur l'environnement distant.
 
-### Playwright — Web E2E
+### Playwright - Web E2E
 
 ```powershell
 python playwright\business_e2e.py --case all --headless
@@ -98,7 +98,7 @@ python playwright\business_e2e.py --case all --headless
 
 Les scénarios E2E qui créent des données métier utilisent des marqueurs de test et préservent les données préexistantes. Voir [playwright/README.md](playwright/README.md).
 
-### JMeter — performance
+### JMeter - performance
 
 ```powershell
 .\jmeter\run-smoke.ps1
@@ -106,7 +106,7 @@ Les scénarios E2E qui créent des données métier utilisent des marqueurs de t
 
 Les plans `progressive.jmx` et `endurance.jmx` sont réservés à une exécution locale contrôlée. Voir [jmeter/README.md](jmeter/README.md).
 
-### Appium — Android local uniquement
+### Appium - Android local uniquement
 
 ```powershell
 .\appium\run.ps1 -RemoteInstalled -Authenticated -Serial '<ADB_SERIAL>'
@@ -176,5 +176,5 @@ Appium Android : exécution locale uniquement
 ## Auteur
 
 **Fatima Bousmiti**  
-QA Automation Engineer — conception des scénarios, automatisation Web/API/mobile, performance, rapports et intégration CI/CD.  
+QA Automation Engineer - conception des scénarios, automatisation Web/API/mobile, performance, rapports et intégration CI/CD.  
 Contact : [fatimabousmiti9@gmail.com](mailto:fatimabousmiti9@gmail.com)
