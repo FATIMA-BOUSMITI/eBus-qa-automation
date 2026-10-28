@@ -1,4 +1,4 @@
-# eBus — QA Automation Portfolio
+# eBus - QA Automation Portfolio
 
 Suite professionnelle d'assurance qualité automatisée pour **eBus**, une application de gestion du transport public composée d'un frontend Flutter et d'une API Java / Spring Boot. Ce dépôt rassemble les tests de parcours web, API, mobile et performance, ainsi que leur documentation technique.
 
